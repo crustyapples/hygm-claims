@@ -1,0 +1,40 @@
+
+December:
+\Single Card Orders: 31 
+Multiple Card Orders: 368 
+Written Birthday Cards: 0 
+Birthday Bundles Ordered: 0 
+Donations: $133.0 
+Total Written Cards: 399
+
+January:
+\Single Card Orders: 6 
+Multiple Card Orders: 2 
+Written Birthday Cards: 0 
+Birthday Bundles Ordered: 0 
+Donations: $0 
+Total Written Cards: 8
+
+February:
+\Single Card Orders: 5 
+Multiple Card Orders: 30 
+Written Birthday Cards: 0 
+Birthday Bundles Ordered: 0 
+Donations: $0 
+Total Written Cards: 35
+
+March:
+\Single Card Orders: 45 
+Multiple Card Orders: 47 
+Written Birthday Cards: 0 
+Birthday Bundles Ordered: 0 
+Donations: $82.0 
+Total Written Cards: 92
+
+April:
+\Single Card Orders: 10 
+Multiple Card Orders: 3 
+Written Birthday Cards: 1 
+Birthday Bundles Ordered: 5 
+Donations: $35.0 
+Total Written Cards: 13
