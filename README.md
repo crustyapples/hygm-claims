@@ -8,19 +8,9 @@ This bot is deployed on heroku and has been used to process over 14000 SGD in cl
 
 ## Tech Stack
 
-#### Backend Stack
-
-| Type      | Tech                                                         |
-| --------- | ------------------------------------------------------------ |
-| Language  | [Python](https://www.python.org/)                            |
-| Framework | [FastAPI](https://fastapi.tiangolo.com/)                     |
-| Hosting   | [Render](https://render.com/) (Render Web Service)           |
-| Other     | [Google Cloud Platform](https://cloud.google.com/)           |
-
-#### Frontend Stack
-
 | Type      | Tech                                                         |
 | --------- | ------------------------------------------------------------ |
 | Language  | [Python](https://www.python.org/)                            |
 | Framework | [Telegram API](https://github.com/python-telegram-bot/python-telegram-bot)|
+| Google Cloud APIs| [Google Cloud Platform](https://cloud.google.com/)    |
 | Hosting   | [Render](https://render.com/) (Render Web Service)           |
