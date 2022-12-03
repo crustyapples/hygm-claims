@@ -15,7 +15,7 @@ DRIVE_SCOPES = ['https://www.googleapis.com/auth/drive']
 
 # The ID and range of a the spreadsheet.
 
-FINANCE_SPREADSHEET_ID = '1zx7cnRJSe3Jj9NpTKXj1Os4y93VRnCgyESc4UCgyOfs'
+FINANCE_SPREADSHEET_ID = os.getenv('FINANCE_SHEET')
 CLAIMS_RANGE_NAME = 'Spending!A2:H2'
 
 TIMESTAMP = str(datetime.now().astimezone(timezone('Asia/Singapore')))[:16]
@@ -64,7 +64,7 @@ def drive_authenticator():
 
     return creds
 
-def claims_ul(claimsdata):
+def sheet_ul(claimsdata):
     print("running...")
     # The file token.pickle stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
@@ -101,7 +101,7 @@ def claims_ul(claimsdata):
     
     print(result)
 
-def claims_ul2(folder_id):
+def receipt_ul(folder_id):
 
     service = build('drive', 'v3', credentials=drive_authenticator())
     
@@ -138,7 +138,7 @@ def receipt_del():
         path = os.path.join('receipts',y)
         os.remove(path)
 
-def claims_ul3():
+def claims_ul():
     service = build('drive', 'v3', credentials=drive_authenticator()) 
     months_list = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November','December']
     claims_month = f'{TIMESTAMP[5:7]}/{TIMESTAMP[:4]} {months_list[int(TIMESTAMP[5:7])-1]} BOT'
@@ -187,5 +187,5 @@ def claims_ul3():
         date_folder = service.files().create(body=date_metadata,fields='id').execute()
         date_folder_id = date_folder.get('id')
 
-    claims_ul2(date_folder_id)
+    receipt_ul(date_folder_id)
 

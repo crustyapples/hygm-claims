@@ -1,14 +1,14 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, ConversationHandler, CallbackContext
 from telegram import ReplyKeyboardMarkup, Update
 import logging
-from bot_data import claims_ul, claims_ul3, receipt_del
+from bot_data import sheet_ul, claims_ul, receipt_del
 import os
 import copy
 from datetime import datetime
 
 PORT = int(os.environ.get('PORT', 5000))
 
-TOKEN = ''
+TOKEN = os.getenv('BOT_TOKEN')
 
 updater = Updater(token=TOKEN, use_context=True)
 
@@ -101,9 +101,9 @@ def claims(update: Update, context: CallbackContext) -> int:
             "First, let me know which committee member you are!",
             reply_markup=ReplyKeyboardMarkup(
                 [
-                    ['Advait','Jaslyn','Jiwon','Joanne'],
-                    ['Triston','Weilin','Sheena','Ke Wei'],
-                    ['Raynard','Max','Devan','Sofea'],
+                    ['Advait','Jaslyn','Jiwon','Joanne','Triston'],
+                    ['Raynard','Weilin','Sheena','Ke Wei'],
+                    ['Chelvis','Max','Devan','Sofea','Evelyn'],
                     ['Bryan','Aldrich','Hui Shan','Maira','Dylan']
                 ], one_time_keyboard=True
         )
@@ -211,7 +211,7 @@ def data_ul(update: Update, context: CallbackContext) -> int:
     
     if context.user_data['entry'] == 'claims':
         if text == 'Upload':
-            claims_ul3()
+            claims_ul()
             receipt_del()
             update.message.reply_text(f'Uploading the following claims to Finance Sheet (New) on Google Sheets: \n{facts_to_str(user_data)} \n\n'
             'You may start a new entry by calling /claims again! \n\n'
@@ -231,7 +231,7 @@ def data_ul(update: Update, context: CallbackContext) -> int:
             
             print(user_data)
             ul_data = copy.deepcopy(user_data)
-            claims_ul(ul_data)
+            sheet_ul(ul_data)
             print(ul_data)
             print(user_data)
             
@@ -254,7 +254,9 @@ def main():
     greentea_handler = CommandHandler('greentea', greentea)
 
     start_handler = CommandHandler('pokka', start, Filters.user(user_id=[
-# add authorized user ids here
+        52460092,113264290,783785579,411680827,222872163,828268987,
+        303655147,563051070,355666223,352265020,189083051,244712716,
+        686899058,762923285,1057892382,257797566,321001655,221420498,845410147
             ]
         )
     )   
@@ -270,7 +272,7 @@ def main():
                 CommandHandler('claims', claims),caps_handler, help_handler, greentea_handler
             ],
             CHOOSE_USER: [
-                MessageHandler(Filters.regex('^(Advait|Jaslyn|Jiwon|Joanne|Triston|Weilin|Shophouse|Sheena|Ke Wei|Raynard|Max|Devan|Sofea|Hui Shan|Aldrich|Bryan|Dylan|Maira)$'), user_choice)
+                MessageHandler(Filters.regex('^(Advait|Jaslyn|Jiwon|Joanne|Triston|Weilin|Shophouse|Sheena|Ke Wei|Raynard|Max|Devan|Sofea|Hui Shan|Aldrich|Bryan|Dylan|Maira|Chelvis|Evelyn)$'), user_choice)
             ],
             TYPING_REPLY: [
                 MessageHandler(
@@ -305,7 +307,8 @@ def main():
     updater.start_webhook(listen="0.0.0.0",
                           port=int(PORT),
                           url_path=TOKEN)
-    updater.bot.setWebhook('https://ancient-hamlet-17787.herokuapp.com/' + TOKEN)
+    # updater.bot.setWebhook('https://ancient-hamlet-17787.herokuapp.com/' + TOKEN)
+    updater.bot.setWebhook('https://ayatakabot.onrender.com/' + TOKEN)
 
 if __name__ == '__main__':
     main()
